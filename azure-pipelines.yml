@@ -1,0 +1,23 @@
+strategy:
+  matrix:
+    linux:
+      imageName: 'ubuntu-latest'
+    mac:
+      imageName: 'macos-latest'
+    windows:
+      imageName: 'windows-latest'
+
+pool:
+  vmImage: $(imageName)
+
+steps:
+  - task: MSBuild@1
+    inputs:
+      solution: msdf-atlas-gen.sln
+      msbuildVersion: '14.0'
+      msbuildArchitecture: 'x64'
+      platform: 'x64'
+      configuration: 'release'
+    condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  - bash: make
+    condition: ne( variables['Agent.OS'], 'Windows_NT' )
