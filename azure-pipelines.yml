@@ -17,11 +17,9 @@ steps:
     inputs:
       solution: msdf-atlas-gen.sln
       vsVersion: '16.0'
-      msbuildArgs: /p:PlatformToolset=v142
+      msbuildArgs: /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0
       platform: 'x64'
       configuration: 'release'
     condition: eq( variables['Agent.OS'], 'Windows_NT' )
-  - bash: |
-      make
-      ls bin
+  - bash: make
     condition: ne( variables['Agent.OS'], 'Windows_NT' )
