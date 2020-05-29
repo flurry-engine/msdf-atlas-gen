@@ -11,9 +11,12 @@ pool:
   vmImage: $(imageName)
 
 steps:
-  - checkout: self
-    submodules: true
-  - bash: msbuild msdf-atlas-gen /p:PlatformToolset=v142 /p:Platform="x64" /p:Configuration="Release"
+  - task: VSBuild@1
+    inputs:
+      solution: msdf-atlas-gen.sln
+      vsVersion: '15.0'
+      platform: 'x64'
+      configuration: 'release'
     condition: eq( variables['Agent.OS'], 'Windows_NT' )
   - bash: make
     condition: ne( variables['Agent.OS'], 'Windows_NT' )
