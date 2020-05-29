@@ -1,0 +1,31 @@
+name: Unix
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+    - name: make
+      run: make
+    - name: zip
+      run: tar -a -c -f ${{ matrix.os }}.zip -C bin msdf-atlas-gen
+    - name: Upload Artefacts
+      uses: AButler/upload-release-assets@v2.0
+      with:
+        files: '${{ matrix.os }}.zip'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        release-tag: CI

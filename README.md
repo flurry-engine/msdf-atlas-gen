@@ -1,5 +1,7 @@
-
 # Multi-channel signed distance field atlas generator
+
+![Windows](https://github.com/flurry-engine/msdf-atlas-gen/workflows/Windows/badge.svg)
+![Unix](https://github.com/flurry-engine/msdf-atlas-gen/workflows/Unix/badge.svg)
 
 This is a utility for generating compact font atlases using [MSDFgen](https://github.com/Chlumsky/msdfgen).
 
