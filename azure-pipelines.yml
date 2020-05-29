@@ -11,6 +11,8 @@ pool:
   vmImage: $(imageName)
 
 steps:
+  - checkout: self
+    submodules: yes
   - task: VSBuild@1
     inputs:
       solution: msdf-atlas-gen.sln
