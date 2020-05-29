@@ -12,7 +12,7 @@ pool:
 
 steps:
   - checkout: self
-    submodules: yes
+    submodules: true
   - task: VSBuild@1
     inputs:
       solution: msdf-atlas-gen.sln
