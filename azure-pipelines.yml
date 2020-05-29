@@ -21,5 +21,7 @@ steps:
       platform: 'x64'
       configuration: 'release'
     condition: eq( variables['Agent.OS'], 'Windows_NT' )
-  - bash: make
-    condition: ne( variables['Agent.OS'], 'Windows_NT' )
+  - bash: make linux
+    condition: eq( variables['Agent.OS'], 'Linux' )
+  - bash: make osx
+    condition: eq( variables['Agent.OS'], 'Darwin' )
