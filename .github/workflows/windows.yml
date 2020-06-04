@@ -20,10 +20,10 @@ jobs:
     - name: make
       run: msbuild /p:Platform=x64 /p:Configuration=Release /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0
     - name: zip
-      run: tar -a -c -f windows-latest.zip -C x64/Release msdf-atlas-gen.exe
+      run: tar -czvf windows-latest.tar.gz -C x64/Release msdf-atlas-gen.exe
     - name: Upload Artefacts
       uses: AButler/upload-release-assets@v2.0
       with:
-        files: 'windows-latest.zip'
+        files: 'windows-latest.tar.gz'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         release-tag: CI

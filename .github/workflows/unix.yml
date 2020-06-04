@@ -22,10 +22,10 @@ jobs:
     - name: make
       run: make
     - name: zip
-      run: tar -a -c -f ${{ matrix.os }}.zip -C bin msdf-atlas-gen
+      run: tar -czvf ${{ matrix.os }}.tar.gz -C bin msdf-atlas-gen
     - name: Upload Artefacts
       uses: AButler/upload-release-assets@v2.0
       with:
-        files: '${{ matrix.os }}.zip'
+        files: '${{ matrix.os }}.tar.gz'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         release-tag: CI
